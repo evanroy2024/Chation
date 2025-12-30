@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chation - No-Code Chatbot Builder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body, html {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: #fafbfc;
+      color: #1a1a1a;
+      position: relative;
+    }
+    
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px 40px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 50px;
+    }
+    .content-wrapper {
+      background: #ffffff;
+      border: 1px solid #e1e4e8;
+      border-radius: 24px;
+      padding: 50px 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      max-width: 900px;
+      width: 100%;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 15px;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: #64748b;
+      margin-bottom: 35px;
+      font-weight: 400;
+    }
+    .date-badge {
+      display: inline-block;
+      padding: 10px 24px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 45px;
+    }
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 45px;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .time-unit {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px 12px;
+      transition: all 0.3s ease;
+    }
+    .time-unit:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(99,102,241,0.1);
+      border-color: #c7d2fe;
+      background: #ffffff;
+    }
+    .time-value {
+      display: block;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .time-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .video-container {
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto 40px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border: 1px solid #e2e8f0;
+    }
+    video {
+      width: 100%;
+      display: block;
+    }
+    .cta-section {
+      margin-top: 10px;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+      margin-bottom: 15px;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(99,102,241,0.4);
+    }
+    .helper-text {
+      font-size: 0.9rem;
+      color: #64748b;
+      max-width: 450px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .corner-box {
+        top: 15px;
+        right: 15px;
+        padding: 10px 16px;
+        font-size: 0.75rem;
+      }
+      .container {
+        padding: 80px 15px 30px;
+        margin-top: -65px;
+      }
+      .content-wrapper {
+        padding: 35px 25px;
+        border-radius: 20px;
+      }
+      .logo {
+        font-size: 0.8rem;
+        margin-bottom: 35px;
+      }
+      h1 {
+        margin-bottom: 12px;
+      }
+      .subtitle {
+        margin-bottom: 28px;
+      }
+      .date-badge {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+        margin-bottom: 35px;
+      }
+      .countdown {
+        gap: 12px;
+        margin-bottom: 35px;
+      }
+      .time-unit {
+        padding: 18px 10px;
+      }
+      .time-value {
+        margin-bottom: 4px;
+      }
+      .time-label {
+        font-size: 0.7rem;
+      }
+      .video-container {
+        margin-bottom: 30px;
+        border-radius: 14px;
+      }
+      .cta-button {
+        padding: 14px 34px;
+        font-size: 1rem;
+      }
+      .helper-text {
+        font-size: 0.85rem;
+        padding: 0 5px;
+      }
+    }
+    @media (max-width: 480px) {
+      .corner-box {
+        top: 12px;
+        right: 12px;
+        padding: 8px 14px;
+        font-size: 0.7rem;
+      }
+      .content-wrapper {
+        padding: 30px 20px;
+      }
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        max-width: 280px;
+      }
+      .time-unit {
+        padding: 20px 12px;
+      }
+    }
+    @media (max-width: 360px) {
+      .corner-box {
+        font-size: 0.65rem;
+        padding: 7px 12px;
+      }
+      .content-wrapper {
+        padding: 25px 15px;
+      }
+      .time-unit {
+        padding: 16px 10px;
+      }
+      .cta-button {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+      }
+      .helper-text {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="content-wrapper">
+        <img style="width: 60%; margin-bottom: 5px;" src="logo.png" alt="">
+        <hr style="margin-bottom: 10px;">
+        <p class="subtitle" >Build powerful AI chatbots without coding</p>
+      
+      <div class="date-badge">🚀 Launching January 7th, 2026</div>
+      
+      <div class="countdown">
+        <div class="time-unit">
+          <span class="time-value" id="days">00</span>
+          <span class="time-label">Days</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-value" id="hours">00</span>
+          <span class="time-label">Hours</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-value" id="minutes">00</span>
+          <span class="time-label">Min</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-value" id="seconds">00</span>
+          <span class="time-label">Sec</span>
+        </div>
+      </div>
+      
+      <div class="video-container">
+        <video controls muted loop playsinline>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+      </div>
+      
+      <div class="cta-section">
+        <a href="https://chat.openai.com/" target="_blank" class="cta-button">Ask Agent</a>
+        <p class="helper-text">For now, you can talk to our agent regarding site features, pricing, integrations, and more.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const launchDate = new Date('January 7, 2026 00:00:00').getTime();
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+      
+      if (distance < 0) {
+        document.querySelector('.content-wrapper').innerHTML = `
+          <h1>We're Live!</h1>
+          <p class="subtitle">Start building your chatbot today</p>
+          <div class="cta-section">
+            <a href="https://chat.openai.com/" target="_blank" class="cta-button">Ask Agent</a>
+            <p class="helper-text">Talk to our agent about features, pricing, integrations, and more.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    const video = document.querySelector('video');
+    video.play().catch(() => {
+      video.muted = true;
+      video.play();
+    });
+  </script>
+</body>
+</html>
